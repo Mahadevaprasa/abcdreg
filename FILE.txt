@@ -1,0 +1,142 @@
+package com.example.demo;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+@RestController
+public class HelloWorldController {
+	@GetMapping ("/hello")
+	public String helloworld()
+	{
+		return "Hello World";
+	}
+	
+ 
+}
+
+
+package com.example.demo;
+
+public class Student {
+	private String FirstName;
+	private String LastName;
+	public Student(String firstName, String lastName) {
+		super();
+		FirstName = firstName;
+		LastName = lastName;
+	}
+	public String getFirstName() {
+		return FirstName;
+	}
+	public void setFirstName(String firstName) {
+		FirstName = firstName;
+	}
+	public String getLastName() {
+		return LastName;
+	}
+	public void setLastName(String lastName) {
+		LastName = lastName;
+	}
+	
+
+}
+
+
+
+
+
+package com.example.demo;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+
+
+public class StudentController {
+	@GetMapping("/student")
+	public Student GetStudent()
+	{
+		return new Student ("bindu","shree");
+	}
+	@GetMapping ("/Student")
+	public List <Student> GetStudent1(){
+		List<Student> student=new ArrayList<>();
+		student.add(new Student("darshan","gowda"));
+		student.add(new Student("keerthi","kumar"));
+		return student;
+		
+	}
+	
+
+}
+
+
+
+
+
+
+package com.example.demo.entity;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table (name ="user")
+public class user{
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private long id;
+//	@column {name="name"}
+	private String name;
+//	@column {name="address"}
+	private String address;
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public user(long id, String name, String address) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.address = address;
+	}
+	
+	
+}
+
+
+
+
+
+
+package com.example.demo.repository;
+
+import org.springframework.stereotype.Repository;
+
+@Repository
+
+public interface userrepository extends JPA {
+	
+
+}
+
